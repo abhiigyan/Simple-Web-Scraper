@@ -5,7 +5,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-
 	"golang.org/x/net/html"
 )
 
@@ -72,7 +71,7 @@ func main() {
 	chUrl := make(chan string)
 	chFinished := make(chan bool)
 
-	for _, url := range seedUrl {
+	for _,url := range seedUrl {
 		go crawl(url, chUrl, chFinished)
 	}
 	for c := 0; c < len(seedUrl); {
@@ -85,7 +84,7 @@ func main() {
 	}
 	fmt.Println("\nFound", len(foundUrl), "unique url: \n")
 
-	for url, _ := range foundUrl {
+	for url,_ := range foundUrl {
 		fmt.Println("-" + url)
 	}
 	close(chUrl)
